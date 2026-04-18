@@ -177,7 +177,7 @@ GROUP BY state;
     
 --     c. Finally, if you have not done so already, fill in any missing values for total_claim_count with 0. Hint - Google the COALESCE function.
 
-	SELECT prescriber.npi, drug_name, SUM(COALESCE(total_claim_count),0) AS total_claim_count
+	SELECT prescriber.npi, drug_name, SUM(COALESCE (total_claim_count,0)) AS total_claim_count
 	FROM prescriber		CROSS JOIN drug
 						LEFT JOIN prescription USING (drug_name)
 	WHERE specialty_description = 'Pain Management' AND nppes_provider_city ILIKE 'Nashville' AND opioid_drug_flag = 'Y'
